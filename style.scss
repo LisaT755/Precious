@@ -1,0 +1,76 @@
+
+@mixin ring($size, $color) {
+	$shadow-color: (darken($color, 20%));
+	$shadow-size: ($size * 0.05);
+	width: $size;
+	height: $size;
+	border: $size/6 $color solid;
+	border-radius: 50%;
+	box-shadow: 5px 5px $shadow-size $shadow-color inset, 5px 5px $shadow-size 		$shadow-color;
+}
+
+.one-ring {
+	@include ring(200px, yellow);
+}
+
+.small-ring {
+	@include ring (100px, red);
+	box-shadow: none;
+}
+
+@for $i from 1 through 7 {
+	.loop {
+		&:nth-child(#{$i}) {
+			$size: 120px * $i/4.5;
+			margin-right: -$size/5;
+			@include ring ($size, black);
+		}
+	}
+}
+
+body {
+    font-family: 'Jim Nightshade', cursive;
+}
+h1 {
+    padding: 2vh;
+}
+header, .one-ring, .small-ring, .command {
+	//background: blue;
+    display: flex;
+    flex-direction: row;
+    //align-items: flex-end;
+    justify-content: center;
+    margin: 1vh;
+    padding: 1vw;
+}
+
+span {
+    width: 100%;
+}
+
+#navigation {
+	background-color: orange;
+	color:white;
+	height: 100px;
+	width: 100%;
+	
+	nav {
+		
+		.navbar {
+			display: flex;
+			justify-content: space-between;
+			list-style: none;
+			
+			.nav-item {
+				font-size: 1.2em;
+				
+				a {
+					text-decoration: none;
+					color: white;
+				}
+			}
+		}
+	}
+}
+
+
